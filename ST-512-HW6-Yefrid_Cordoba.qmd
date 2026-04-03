@@ -1,6 +1,6 @@
 ---
 title: "ST-512-HW6-Yefrid_Cordoba"
-format: html
+format: pdf
 editor: visual
 author: "Yefrid Cordoba"
 ---
@@ -93,7 +93,7 @@ F_AB <- MSAB / MSE
 ```
 
 | Source | sf | SS | MS | F-value |
-|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
+|:----------------:|:-------------:|:-------------:|:-------------:|:-------------:|
 | **Rater (A)** | [`r dfa`]{.underline} | 1641 | [`r round(MSA, 2)`]{.underline} | [`r round(F_A, 2)`]{.underline} |
 | **Product (B)** | [`r dfb`]{.underline} | 892 | [`r round(MSB, 2)`]{.underline} | [`r round(F_B, 2)`]{.underline} |
 | **R\*P (AB)** | [`r dfab`]{.underline} | 1308 | [`r round(MSAB, 2)`]{.underline} | [`r round(F_AB, 2)`]{.underline} |
@@ -155,7 +155,7 @@ P_AB <- pf(F_AB, dfab, dfe, lower.tail = F)
 ```
 
 | Source | df | SS | MS | F-value | P-value |
-|------------|------------|------------|------------|------------|------------|
+|:-------------------:|:----------:|:----------:|:----------:|:----------:|:----------:|
 | **Location (A fixed)** | [`r dfa`]{.underline} | 1.30 | [`r round(MSA, 2)`]{.underline} | [`r round(F_A, 2)`]{.underline} | `r P_A` |
 | **Player (B random)** | [`r dfb`]{.underline} | 3879.30 | [`r round(MSB, 2)`]{.underline} | [`r round(F_B, 2)`]{.underline} | `r P_B` |
 | **Player \* Location** | [`r dfab`]{.underline} | 323.67 | [`r round(MSAB, 2)`]{.underline} | [`r round(F_AB, 2)`]{.underline} | `r P_AB` |
@@ -171,7 +171,7 @@ $H_a : \sigma_{\alpha\beta}^2 \neq 0$\
 
 Given the P-value for the interaction term (0.6823), and assuming an $\alpha = 0.05$, the probability is higher that our threshold. Therefore we fail to reject the null hypothesis and conclude that we don't have enough evidence to suggest that there is an interaction between player and location.
 
-### c. 
+### c.
 
 Testing:
 
@@ -207,3 +207,82 @@ $\widehat{\sigma_{\beta}^2} = 11.226$\
 
 ## Problem 4
 
+A mixed factor effects, where factor A is cheddar cheese variety (a = 4), and factor B is the rater (b = 5), a duplicate (n = 2).
+
+### a.
+
+```{r}
+SSA <- 70
+SSB <- 24.01
+SSAB <- 3.83
+SST <- 152.05
+SSE <- SST - SSA - SSB - SSAB
+
+a <- 4
+b <- 5
+n <- 2
+
+dfa <- a - 1
+dfb <- b - 1
+dfab <- dfa * dfb
+dfe <- a * b * (n -1)
+dfT <- a * b * n - 1
+
+MSA <- SSA / dfa
+MSB <- SSB / dfb
+MSAB <- SSAB / dfab
+MSE <- SSE / dfe
+
+F_A <- MSA / MSAB
+F_B <- MSB / MSE
+F_AB <- MSAB / MSE
+
+P_A <- pf(F_A, dfa, dfab, lower.tail = F)
+P_B <- pf(F_B, dfb, dfe, lower.tail = F)
+P_AB <- pf(F_AB, dfab, dfe, lower.tail = F)
+```
+
+| Source | df | SS | MS | F-value | P-value |
+|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|
+| **Variety (A fixed)** | [`r dfa`]{.underline} | 70 | [`r round(MSA, 2)`]{.underline} | [`r round(F_A, 2)`]{.underline} | `r P_A` |
+| **Rater (B random)** | [`r dfb`]{.underline} | 24.01 | [`r round(MSB, 2)`]{.underline} | [`r round(F_B, 2)`]{.underline} | `r P_B` |
+| **Variety \* Rater** | [`r dfab`]{.underline} | 3.83 | [`r round(MSAB, 2)`]{.underline} | [`r round(F_AB, 2)`]{.underline} | `r P_AB` |
+| **Error** | [`r dfe`]{.underline} | [`r round(SSE, 2)`]{.underline} | [`r round(MSE, 2)`]{.underline} |  |  |
+| **Total** | [`r dfT`]{.underline} | 152.05 |  |  |  |
+
+### b.
+
+Testing no interaction between variety and rater:
+
+$H_o : \sigma_{\alpha\beta}^2 = 0$\
+$H_a : \sigma_{\alpha\beta}^2 \neq 0$\
+
+Given the P-value for the interaction term (0.9998), and assuming an $\alpha = 0.05$, the probability is higher that our threshold. Therefore we fail to reject the null hypothesis and conclude that we don't have enough evidence to suggest that there is an interaction between the variety of cheddar and the rater.
+
+### c.
+
+Since the the interaction is not significant, the Tukey's and Bonferroni's minimum significance difference:
+
+```{r}
+SE <- sqrt(2 * MSE / (b * n))
+SE
+qa <- qtukey(1-0.05, a, dfe)/sqrt(2)
+qa
+qHSDa <- SE * qa
+qHSDa
+```
+
+Tukey's HSD for factor A.\
+$W = 2.061$
+
+```{r}
+g = a*(a-1)/2
+nT = a * b * n
+BA = qt(1-(0.05/(2*g)), nT - a * b) 
+BA
+BMSDa = SE * BA
+BMSDa
+```
+
+Bonferroni's MSD for factor A.\
+$B = 2.155$

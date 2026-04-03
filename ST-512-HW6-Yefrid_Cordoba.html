@@ -349,54 +349,54 @@ We reject the null hypothesis if <span class="math inline">\(P(F_{calc} &gt; F_{
 </colgroup>
 <thead>
 <tr class="header">
-<th>Source</th>
-<th>df</th>
-<th>SS</th>
-<th>MS</th>
-<th>F-value</th>
-<th>P-value</th>
+<th style="text-align: center;">Source</th>
+<th style="text-align: center;">df</th>
+<th style="text-align: center;">SS</th>
+<th style="text-align: center;">MS</th>
+<th style="text-align: center;">F-value</th>
+<th style="text-align: center;">P-value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Location (A fixed)</strong></td>
-<td><u>1</u></td>
-<td>1.30</td>
-<td><u>1.3</u></td>
-<td><u>0.04</u></td>
-<td>0.8534295</td>
+<td style="text-align: center;"><strong>Location (A fixed)</strong></td>
+<td style="text-align: center;"><u>1</u></td>
+<td style="text-align: center;">1.30</td>
+<td style="text-align: center;"><u>1.3</u></td>
+<td style="text-align: center;"><u>0.04</u></td>
+<td style="text-align: center;">0.8534295</td>
 </tr>
 <tr class="even">
-<td><strong>Player (B random)</strong></td>
-<td><u>9</u></td>
-<td>3879.30</td>
-<td><u>431.03</u></td>
-<td><u>8.74</u></td>
-<td>9.4239983^{-12}</td>
+<td style="text-align: center;"><strong>Player (B random)</strong></td>
+<td style="text-align: center;"><u>9</u></td>
+<td style="text-align: center;">3879.30</td>
+<td style="text-align: center;"><u>431.03</u></td>
+<td style="text-align: center;"><u>8.74</u></td>
+<td style="text-align: center;">9.4239983^{-12}</td>
 </tr>
 <tr class="odd">
-<td><strong>Player * Location</strong></td>
-<td><u>9</u></td>
-<td>323.67</td>
-<td><u>35.96</u></td>
-<td><u>0.73</u></td>
-<td>0.6823083</td>
+<td style="text-align: center;"><strong>Player * Location</strong></td>
+<td style="text-align: center;"><u>9</u></td>
+<td style="text-align: center;">323.67</td>
+<td style="text-align: center;"><u>35.96</u></td>
+<td style="text-align: center;"><u>0.73</u></td>
+<td style="text-align: center;">0.6823083</td>
 </tr>
 <tr class="even">
-<td><strong>Error</strong></td>
-<td><u>320</u></td>
-<td>15787.29</td>
-<td><u>49.34</u></td>
-<td></td>
-<td></td>
+<td style="text-align: center;"><strong>Error</strong></td>
+<td style="text-align: center;"><u>320</u></td>
+<td style="text-align: center;">15787.29</td>
+<td style="text-align: center;"><u>49.34</u></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td><strong>Total</strong></td>
-<td><u>339</u></td>
-<td>19991.56</td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: center;"><strong>Total</strong></td>
+<td style="text-align: center;"><u>339</u></td>
+<td style="text-align: center;">19991.56</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
@@ -410,7 +410,7 @@ We reject the null hypothesis if <span class="math inline">\(P(F_{calc} &gt; F_{
 <p>Given the P-value for the interaction term (0.6823), and assuming an <span class="math inline">\(\alpha = 0.05\)</span>, the probability is higher that our threshold. Therefore we fail to reject the null hypothesis and conclude that we don’t have enough evidence to suggest that there is an interaction between player and location.</p>
 </section>
 <section id="c.-1" class="level3">
-<h3 class="anchored" data-anchor-id="c.-1">c.&nbsp;</h3>
+<h3 class="anchored" data-anchor-id="c.-1">c.</h3>
 <p>Testing:</p>
 <p><span class="math inline">\(H_o : \alpha_1 = \alpha_2 = 0\)</span><br>
 <span class="math inline">\(H_a : at~least~one~\alpha_i \neq 0\)</span><br>
@@ -447,7 +447,152 @@ We reject the null hypothesis if <span class="math inline">\(P(F_{calc} &gt; F_{
 <p><span class="math inline">\(\widehat{\sigma^2} = 49.335\)</span><br>
 <span class="math inline">\(\widehat{\sigma_{\alpha\beta}^2} = 0\)</span><br>
 As statistically proven, the <span class="math inline">\(\widehat{\sigma_{\alpha\beta}^2}\)</span> is not estimated to be different than 0, since a variance cannot be negative, its value is set to 0.<br>
-<span class="math inline">\(\widehat{\sigma_{\beta}^2} = 11.226\)</span></p>
+<span class="math inline">\(\widehat{\sigma_{\beta}^2} = 11.226\)</span><br>
+</p>
+</section>
+</section>
+<section id="problem-4" class="level2">
+<h2 class="anchored" data-anchor-id="problem-4">Problem 4</h2>
+<p>A mixed factor effects, where factor A is cheddar cheese variety (a = 4), and factor B is the rater (b = 5), a duplicate (n = 2).</p>
+<p>###a.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>SSA <span class="ot">&lt;-</span> <span class="dv">70</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>SSB <span class="ot">&lt;-</span> <span class="fl">24.01</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>SSAB <span class="ot">&lt;-</span> <span class="fl">3.83</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>SST <span class="ot">&lt;-</span> <span class="fl">152.05</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>SSE <span class="ot">&lt;-</span> SST <span class="sc">-</span> SSA <span class="sc">-</span> SSB <span class="sc">-</span> SSAB</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>dfa <span class="ot">&lt;-</span> a <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>dfb <span class="ot">&lt;-</span> b <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>dfab <span class="ot">&lt;-</span> dfa <span class="sc">*</span> dfb</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>dfe <span class="ot">&lt;-</span> a <span class="sc">*</span> b <span class="sc">*</span> (n <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>dfT <span class="ot">&lt;-</span> a <span class="sc">*</span> b <span class="sc">*</span> n <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>MSA <span class="ot">&lt;-</span> SSA <span class="sc">/</span> dfa</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>MSB <span class="ot">&lt;-</span> SSB <span class="sc">/</span> dfb</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>MSAB <span class="ot">&lt;-</span> SSAB <span class="sc">/</span> dfab</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>MSE <span class="ot">&lt;-</span> SSE <span class="sc">/</span> dfe</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>F_A <span class="ot">&lt;-</span> MSA <span class="sc">/</span> MSAB</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>F_B <span class="ot">&lt;-</span> MSB <span class="sc">/</span> MSE</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>F_AB <span class="ot">&lt;-</span> MSAB <span class="sc">/</span> MSE</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>P_A <span class="ot">&lt;-</span> <span class="fu">pf</span>(F_A, dfa, dfab, <span class="at">lower.tail =</span> F)</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>P_B <span class="ot">&lt;-</span> <span class="fu">pf</span>(F_B, dfb, dfe, <span class="at">lower.tail =</span> F)</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>P_AB <span class="ot">&lt;-</span> <span class="fu">pf</span>(F_AB, dfab, dfe, <span class="at">lower.tail =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Source</th>
+<th style="text-align: center;">df</th>
+<th style="text-align: center;">SS</th>
+<th style="text-align: center;">MS</th>
+<th style="text-align: center;">F-value</th>
+<th style="text-align: center;">P-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Variety (A fixed)</strong></td>
+<td style="text-align: center;"><u>3</u></td>
+<td style="text-align: center;">70</td>
+<td style="text-align: center;"><u>23.33</u></td>
+<td style="text-align: center;"><u>73.11</u></td>
+<td style="text-align: center;">5.5869097^{-8}</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Rater (B random)</strong></td>
+<td style="text-align: center;"><u>4</u></td>
+<td style="text-align: center;">24.01</td>
+<td style="text-align: center;"><u>6</u></td>
+<td style="text-align: center;"><u>2.21</u></td>
+<td style="text-align: center;">0.1040308</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Variety * Rater</strong></td>
+<td style="text-align: center;"><u>12</u></td>
+<td style="text-align: center;">3.83</td>
+<td style="text-align: center;"><u>0.32</u></td>
+<td style="text-align: center;"><u>0.12</u></td>
+<td style="text-align: center;">0.9997546</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Error</strong></td>
+<td style="text-align: center;"><u>20</u></td>
+<td style="text-align: center;"><u>54.21</u></td>
+<td style="text-align: center;"><u>2.71</u></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Total</strong></td>
+<td style="text-align: center;"><u>39</u></td>
+<td style="text-align: center;">152.05</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<section id="b.-2" class="level3">
+<h3 class="anchored" data-anchor-id="b.-2">b.</h3>
+<p>Testing no interaction between variety and rater:</p>
+<p><span class="math inline">\(H_o : \sigma_{\alpha\beta}^2 = 0\)</span><br>
+<span class="math inline">\(H_a : \sigma_{\alpha\beta}^2 \neq 0\)</span><br>
+</p>
+<p>Given the P-value for the interaction term (0.9998), and assuming an <span class="math inline">\(\alpha = 0.05\)</span>, the probability is higher that our threshold. Therefore we fail to reject the null hypothesis and conclude that we don’t have enough evidence to suggest that there is an interaction between the variety of cheddar and the rater.</p>
+</section>
+<section id="c.-2" class="level3">
+<h3 class="anchored" data-anchor-id="c.-2">c.</h3>
+<p>Since the the interaction is not significant, the Tukey’s and Bonferroni’s minimum significance difference:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>SE <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> MSE <span class="sc">/</span> (b <span class="sc">*</span> n))</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>SE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7362744</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>qa <span class="ot">&lt;-</span> <span class="fu">qtukey</span>(<span class="dv">1</span><span class="fl">-0.05</span>, a, dfe)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>qa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.798936</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>qHSDa <span class="ot">&lt;-</span> SE <span class="sc">*</span> qa</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>qHSDa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.060785</code></pre>
+</div>
+</div>
+<p>Tukey’s HSD for factor A.<br>
+<span class="math inline">\(W = 2.061\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> a<span class="sc">*</span>(a<span class="dv">-1</span>)<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>nT <span class="ot">=</span> a <span class="sc">*</span> b <span class="sc">*</span> n</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>BA <span class="ot">=</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>(<span class="fl">0.05</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>g)), nT <span class="sc">-</span> a <span class="sc">*</span> b) </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>BA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.927119</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>BMSDa <span class="ot">=</span> SE <span class="sc">*</span> BA</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>BMSDa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.155163</code></pre>
+</div>
+</div>
+<p>Bonferroni’s MSD for factor A.<br>
+<span class="math inline">\(B = 2.155\)</span></p>
 </section>
 </section>
 
