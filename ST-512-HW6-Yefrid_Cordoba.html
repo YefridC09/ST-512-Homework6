@@ -204,6 +204,107 @@ We reject the null hypothesis if <span class="math inline">\(P(F_{calc} &gt; F_{
 </section>
 <section id="problem-2" class="level2">
 <h2 class="anchored" data-anchor-id="problem-2">Problem 2</h2>
+<p>2-way random effects analysis of variance.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>SSA <span class="ot">&lt;-</span> <span class="dv">1641</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>SSB <span class="ot">&lt;-</span> <span class="dv">892</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>SSAB <span class="ot">&lt;-</span> <span class="dv">1308</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>SSE <span class="ot">&lt;-</span> <span class="dv">881</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>dfa <span class="ot">&lt;-</span> a <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>dfb <span class="ot">&lt;-</span> b <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>dfab <span class="ot">&lt;-</span> dfa <span class="sc">*</span> dfb</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>dfe <span class="ot">&lt;-</span> a <span class="sc">*</span> b <span class="sc">*</span> (n <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>MSA <span class="ot">&lt;-</span> SSA <span class="sc">/</span> dfa</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>MSB <span class="ot">&lt;-</span> SSB <span class="sc">/</span> dfb</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>MSAB <span class="ot">&lt;-</span> SSAB <span class="sc">/</span> dfab</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>MSE <span class="ot">&lt;-</span> SSE <span class="sc">/</span> dfe</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>F_A <span class="ot">&lt;-</span> MSA <span class="sc">/</span> MSAB</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>F_B <span class="ot">&lt;-</span> MSB <span class="sc">/</span> MSAB</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>F_AB <span class="ot">&lt;-</span> MSAB <span class="sc">/</span> MSE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>sf</th>
+<th>SS</th>
+<th>MS</th>
+<th>F-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rater (A)</td>
+<td><u>7</u></td>
+<td>1641</td>
+<td><u>234.43</u></td>
+<td><u>5.02</u></td>
+</tr>
+<tr class="even">
+<td>Product (B)</td>
+<td><u>4</u></td>
+<td>892</td>
+<td><u>223</u></td>
+<td><u>4.77</u></td>
+</tr>
+<tr class="odd">
+<td>R*P (AB)</td>
+<td><u>28</u></td>
+<td>1308</td>
+<td><u>46.71</u></td>
+<td><u>6.36</u></td>
+</tr>
+<tr class="even">
+<td>Error</td>
+<td><u>120</u></td>
+<td>881</td>
+<td><u>7.34</u></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Using the formulas for the estimated mean squares for each of the sources of variations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sa <span class="ot">&lt;-</span> (MSA <span class="sc">-</span> MSAB) <span class="sc">/</span> (b <span class="sc">*</span> n)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.385714</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sb <span class="ot">&lt;-</span> (MSB <span class="sc">-</span> MSAB) <span class="sc">/</span> (a <span class="sc">*</span> n)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.508929</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sab <span class="ot">&lt;-</span> (MSAB <span class="sc">-</span> MSE) <span class="sc">/</span> n</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.843155</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> MSE</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7.341667</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\widehat{\sigma^2} = 7.34\)</span><br>
+<span class="math inline">\(\widehat{\sigma_{\alpha\beta}^2} = 9.84\)</span><br>
+<span class="math inline">\(\widehat{\sigma_{\alpha}^2} = 9.39\)</span><br>
+<span class="math inline">\(\widehat{\sigma_{\beta}^2} = 5.51\)</span></p>
+</section>
+<section id="problem-3" class="level2">
+<h2 class="anchored" data-anchor-id="problem-3">Problem 3</h2>
 </section>
 
 </main>

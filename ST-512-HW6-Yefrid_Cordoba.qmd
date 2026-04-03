@@ -37,6 +37,7 @@ Assuming an $\alpha = 0.05$, and given that the probability of getting our $\sig
 ```{r}
 tapply(beer_d$sodium, beer_d$brand, mean)
 ```
+
 The values are:\
 $y_{1\cdot} = 23.638$\
 $y_{2\cdot} = 10.675$
@@ -65,3 +66,56 @@ Estimated $\frac{\sigma_\mu^2}{\sigma^2+\sigma_\mu^2} = 0.967$
 This value means that approximately 96.7% of the variation in sodium content of lager beers in a metropolitan area is due to their brand.
 
 ## Problem 2
+
+2-way random effects analysis of variance.
+
+```{r}
+a <- 8
+b <- 5
+n <- 4
+SSA <- 1641
+SSB <- 892
+SSAB <- 1308
+SSE <- 881
+dfa <- a - 1
+dfb <- b - 1
+dfab <- dfa * dfb
+dfe <- a * b * (n -1)
+
+MSA <- SSA / dfa
+MSB <- SSB / dfb
+MSAB <- SSAB / dfab
+MSE <- SSE / dfe
+
+F_A <- MSA / MSAB
+F_B <- MSB / MSAB
+F_AB <- MSAB / MSE
+```
+
+| Source | sf | SS | MS | F-value |
+|---------------|---------------|---------------|---------------|---------------|
+| Rater (A) | [`r dfa`]{.underline} | 1641 | [`r round(MSA, 2)`]{.underline} | [`r round(F_A, 2)`]{.underline} |
+| Product (B) | [`r dfb`]{.underline} | 892 | [`r round(MSB, 2)`]{.underline} | [`r round(F_B, 2)`]{.underline} |
+| R\*P (AB) | [`r dfab`]{.underline} | 1308 | [`r round(MSAB, 2)`]{.underline} | [`r round(F_AB, 2)`]{.underline} |
+| Error | [`r dfe`]{.underline} | 881 | [`r round(MSE, 2)`]{.underline} |  |
+
+Using the formulas for the estimated mean squares for each of the sources of variations.
+
+```{r}
+sa <- (MSA - MSAB) / (b * n)
+sa
+sb <- (MSB - MSAB) / (a * n)
+sb
+sab <- (MSAB - MSE) / n
+sab
+s <- MSE
+s
+```
+
+$\widehat{\sigma^2} = 7.34$\
+$\widehat{\sigma_{\alpha\beta}^2} = 9.84$\
+$\widehat{\sigma_{\alpha}^2} = 9.39$\
+$\widehat{\sigma_{\beta}^2} = 5.51$
+
+## Problem 3
+
