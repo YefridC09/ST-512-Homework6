@@ -7,3 +7,61 @@ author: "Yefrid Cordoba"
 
 ## Problem 1
 
+Single factor random effects model, lager beer in a metropolitan area.
+
+```{r}
+beer_d <- read.table("HW6_Data.txt", header = TRUE,
+                     colClasses = c("numeric", "factor", "factor")) 
+
+```
+
+```{r}
+fit <- aov(sodium ~ brand, data = beer_d)
+summary(fit)
+```
+
+### a.
+
+For a random effects model:
+
+$H_o : \sigma_\mu^2 = 0$\
+$H_o : \sigma_\mu^2 \neq 0$\
+
+Decision rule:\
+We reject the null hypothesis if $P(F_{calc} > F_{critical})$.\
+
+Assuming an $\alpha = 0.05$, and given that the probability of getting our $\sigma_\mu^2$ under the assumption of the null hypothesis is close to 0 (`P-value = <2e-6`), we reject the null hypothesis and conclude that the variability of sodium between brands beer brands is not zero $\sigma_\mu^2 \neq 0$.\
+
+### b.
+
+```{r}
+tapply(beer_d$sodium, beer_d$brand, mean)
+```
+The values are:\
+$y_{1\cdot} = 23.638$\
+$y_{2\cdot} = 10.675$
+
+### c.
+
+```{r}
+MSE <- 0.72
+MStr <- 170.91
+n <- 8
+sm2 <- (MStr - MSE) / n
+sm2
+```
+
+$E(\sigma^2) = MSE = 0.72$\
+$E(\sigma_\mu^2) = \frac{MS_{Tr} - MSE}{n} = 21.274$
+
+### d.
+
+```{r}
+sm2 / (MSE + sm2)
+```
+
+Estimated $\frac{\sigma_\mu^2}{\sigma^2+\sigma_\mu^2} = 0.967$
+
+This value means that approximately 96.7% of the variation in sodium content of lager beers in a metropolitan area is due to their brand.
+
+## Problem 2
