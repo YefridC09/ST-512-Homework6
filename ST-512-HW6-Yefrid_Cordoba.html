@@ -237,41 +237,41 @@ We reject the null hypothesis if <span class="math inline">\(P(F_{calc} &gt; F_{
 </colgroup>
 <thead>
 <tr class="header">
-<th>Source</th>
-<th>sf</th>
-<th>SS</th>
-<th>MS</th>
-<th>F-value</th>
+<th style="text-align: center;">Source</th>
+<th style="text-align: center;">sf</th>
+<th style="text-align: center;">SS</th>
+<th style="text-align: center;">MS</th>
+<th style="text-align: center;">F-value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Rater (A)</td>
-<td><u>7</u></td>
-<td>1641</td>
-<td><u>234.43</u></td>
-<td><u>5.02</u></td>
+<td style="text-align: center;"><strong>Rater (A)</strong></td>
+<td style="text-align: center;"><u>7</u></td>
+<td style="text-align: center;">1641</td>
+<td style="text-align: center;"><u>234.43</u></td>
+<td style="text-align: center;"><u>5.02</u></td>
 </tr>
 <tr class="even">
-<td>Product (B)</td>
-<td><u>4</u></td>
-<td>892</td>
-<td><u>223</u></td>
-<td><u>4.77</u></td>
+<td style="text-align: center;"><strong>Product (B)</strong></td>
+<td style="text-align: center;"><u>4</u></td>
+<td style="text-align: center;">892</td>
+<td style="text-align: center;"><u>223</u></td>
+<td style="text-align: center;"><u>4.77</u></td>
 </tr>
 <tr class="odd">
-<td>R*P (AB)</td>
-<td><u>28</u></td>
-<td>1308</td>
-<td><u>46.71</u></td>
-<td><u>6.36</u></td>
+<td style="text-align: center;"><strong>R*P (AB)</strong></td>
+<td style="text-align: center;"><u>28</u></td>
+<td style="text-align: center;">1308</td>
+<td style="text-align: center;"><u>46.71</u></td>
+<td style="text-align: center;"><u>6.36</u></td>
 </tr>
 <tr class="even">
-<td>Error</td>
-<td><u>120</u></td>
-<td>881</td>
-<td><u>7.34</u></td>
-<td></td>
+<td style="text-align: center;"><strong>Error</strong></td>
+<td style="text-align: center;"><u>120</u></td>
+<td style="text-align: center;">881</td>
+<td style="text-align: center;"><u>7.34</u></td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
@@ -305,6 +305,150 @@ We reject the null hypothesis if <span class="math inline">\(P(F_{calc} &gt; F_{
 </section>
 <section id="problem-3" class="level2">
 <h2 class="anchored" data-anchor-id="problem-3">Problem 3</h2>
+<p>A mixed effects model where factor A (location) is the fixed effect, while factor B (player) is the random effect.</p>
+<section id="a.-1" class="level3">
+<h3 class="anchored" data-anchor-id="a.-1">a.</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>SSA <span class="ot">&lt;-</span> <span class="fl">1.30</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>SSB <span class="ot">&lt;-</span> <span class="fl">3879.3</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>SSAB <span class="ot">&lt;-</span> <span class="fl">323.67</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>SSE <span class="ot">&lt;-</span> <span class="fl">15787.29</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>SST <span class="ot">&lt;-</span> <span class="fl">19991.56</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">17</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>dfa <span class="ot">&lt;-</span> a <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>dfb <span class="ot">&lt;-</span> b <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>dfab <span class="ot">&lt;-</span> dfa <span class="sc">*</span> dfb</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>dfe <span class="ot">&lt;-</span> a <span class="sc">*</span> b <span class="sc">*</span> (n <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>dfT <span class="ot">&lt;-</span> a <span class="sc">*</span> b <span class="sc">*</span> n <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>MSA <span class="ot">&lt;-</span> SSA <span class="sc">/</span> dfa</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>MSB <span class="ot">&lt;-</span> SSB <span class="sc">/</span> dfb</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>MSAB <span class="ot">&lt;-</span> SSAB <span class="sc">/</span> dfab</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>MSE <span class="ot">&lt;-</span> SSE <span class="sc">/</span> dfe</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>F_A <span class="ot">&lt;-</span> MSA <span class="sc">/</span> MSAB</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>F_B <span class="ot">&lt;-</span> MSB <span class="sc">/</span> MSE</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>F_AB <span class="ot">&lt;-</span> MSAB <span class="sc">/</span> MSE</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>P_A <span class="ot">&lt;-</span> <span class="fu">pf</span>(F_A, dfa, dfab, <span class="at">lower.tail =</span> F)</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>P_B <span class="ot">&lt;-</span> <span class="fu">pf</span>(F_B, dfb, dfe, <span class="at">lower.tail =</span> F)</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>P_AB <span class="ot">&lt;-</span> <span class="fu">pf</span>(F_AB, dfab, dfe, <span class="at">lower.tail =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>df</th>
+<th>SS</th>
+<th>MS</th>
+<th>F-value</th>
+<th>P-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Location (A fixed)</strong></td>
+<td><u>1</u></td>
+<td>1.30</td>
+<td><u>1.3</u></td>
+<td><u>0.04</u></td>
+<td>0.8534295</td>
+</tr>
+<tr class="even">
+<td><strong>Player (B random)</strong></td>
+<td><u>9</u></td>
+<td>3879.30</td>
+<td><u>431.03</u></td>
+<td><u>8.74</u></td>
+<td>9.4239983^{-12}</td>
+</tr>
+<tr class="odd">
+<td><strong>Player * Location</strong></td>
+<td><u>9</u></td>
+<td>323.67</td>
+<td><u>35.96</u></td>
+<td><u>0.73</u></td>
+<td>0.6823083</td>
+</tr>
+<tr class="even">
+<td><strong>Error</strong></td>
+<td><u>320</u></td>
+<td>15787.29</td>
+<td><u>49.34</u></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td><u>339</u></td>
+<td>19991.56</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="b.-1" class="level3">
+<h3 class="anchored" data-anchor-id="b.-1">b.</h3>
+<p>Testing:</p>
+<p><span class="math inline">\(H_o : \sigma_{\alpha\beta}^2 = 0\)</span><br>
+<span class="math inline">\(H_a : \sigma_{\alpha\beta}^2 \neq 0\)</span><br>
+</p>
+<p>Given the P-value for the interaction term (0.6823), and assuming an <span class="math inline">\(\alpha = 0.05\)</span>, the probability is higher that our threshold. Therefore we fail to reject the null hypothesis and conclude that we don’t have enough evidence to suggest that there is an interaction between player and location.</p>
+</section>
+<section id="c.-1" class="level3">
+<h3 class="anchored" data-anchor-id="c.-1">c.&nbsp;</h3>
+<p>Testing:</p>
+<p><span class="math inline">\(H_o : \alpha_1 = \alpha_2 = 0\)</span><br>
+<span class="math inline">\(H_a : at~least~one~\alpha_i \neq 0\)</span><br>
+</p>
+<p>Given the P-value for the location term (0.8534), and assuming an <span class="math inline">\(\alpha = 0.05\)</span>, the probability is higher that our threshold. Therefore we fail to reject the null hypothesis and conclude that we don’t have enough evidence to suggest that location has a main effect on the mean points gotten by a player.</p>
+</section>
+<section id="d.-1" class="level3">
+<h3 class="anchored" data-anchor-id="d.-1">d.</h3>
+<p>Testing:</p>
+<p><span class="math inline">\(H_o : \sigma_{\beta}^2 = 0\)</span><br>
+<span class="math inline">\(H_a : \sigma_{\beta}^2 \neq 0\)</span><br>
+</p>
+<p>Given the P-value for the player effect (9.424e-12), and assuming an <span class="math inline">\(\alpha = 0.05\)</span>, the probability is lower than our threshold. Therefore we reject the null hypothesis and conclude that we have enough evidence to suggest that the player has a main effect on the average points.</p>
+</section>
+<section id="e." class="level3">
+<h3 class="anchored" data-anchor-id="e.">e.</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sab <span class="ot">&lt;-</span> (MSAB <span class="sc">-</span> MSE) <span class="sc">/</span> n</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.7865852</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sb <span class="ot">&lt;-</span> (MSB <span class="sc">-</span> MSE) <span class="sc">/</span> (a <span class="sc">*</span> n)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>sb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11.22641</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> MSE</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 49.33528</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\widehat{\sigma^2} = 49.335\)</span><br>
+<span class="math inline">\(\widehat{\sigma_{\alpha\beta}^2} = 0\)</span><br>
+As statistically proven, the <span class="math inline">\(\widehat{\sigma_{\alpha\beta}^2}\)</span> is not estimated to be different than 0, since a variance cannot be negative, its value is set to 0.<br>
+<span class="math inline">\(\widehat{\sigma_{\beta}^2} = 11.226\)</span></p>
+</section>
 </section>
 
 </main>

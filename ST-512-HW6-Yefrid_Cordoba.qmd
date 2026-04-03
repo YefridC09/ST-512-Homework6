@@ -93,11 +93,11 @@ F_AB <- MSAB / MSE
 ```
 
 | Source | sf | SS | MS | F-value |
-|---------------|---------------|---------------|---------------|---------------|
-| Rater (A) | [`r dfa`]{.underline} | 1641 | [`r round(MSA, 2)`]{.underline} | [`r round(F_A, 2)`]{.underline} |
-| Product (B) | [`r dfb`]{.underline} | 892 | [`r round(MSB, 2)`]{.underline} | [`r round(F_B, 2)`]{.underline} |
-| R\*P (AB) | [`r dfab`]{.underline} | 1308 | [`r round(MSAB, 2)`]{.underline} | [`r round(F_AB, 2)`]{.underline} |
-| Error | [`r dfe`]{.underline} | 881 | [`r round(MSE, 2)`]{.underline} |  |
+|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
+| **Rater (A)** | [`r dfa`]{.underline} | 1641 | [`r round(MSA, 2)`]{.underline} | [`r round(F_A, 2)`]{.underline} |
+| **Product (B)** | [`r dfb`]{.underline} | 892 | [`r round(MSB, 2)`]{.underline} | [`r round(F_B, 2)`]{.underline} |
+| **R\*P (AB)** | [`r dfab`]{.underline} | 1308 | [`r round(MSAB, 2)`]{.underline} | [`r round(F_AB, 2)`]{.underline} |
+| **Error** | [`r dfe`]{.underline} | 881 | [`r round(MSE, 2)`]{.underline} |  |
 
 Using the formulas for the estimated mean squares for each of the sources of variations.
 
@@ -118,4 +118,92 @@ $\widehat{\sigma_{\alpha}^2} = 9.39$\
 $\widehat{\sigma_{\beta}^2} = 5.51$
 
 ## Problem 3
+
+A mixed effects model where factor A (location) is the fixed effect, while factor B (player) is the random effect.
+
+### a.
+
+```{r}
+SSA <- 1.30
+SSB <- 3879.3
+SSAB <- 323.67
+SSE <- 15787.29
+SST <- 19991.56
+
+a <- 2
+b <- 10
+n <- 17
+
+dfa <- a - 1
+dfb <- b - 1
+dfab <- dfa * dfb
+dfe <- a * b * (n -1)
+dfT <- a * b * n - 1
+
+MSA <- SSA / dfa
+MSB <- SSB / dfb
+MSAB <- SSAB / dfab
+MSE <- SSE / dfe
+
+F_A <- MSA / MSAB
+F_B <- MSB / MSE
+F_AB <- MSAB / MSE
+
+P_A <- pf(F_A, dfa, dfab, lower.tail = F)
+P_B <- pf(F_B, dfb, dfe, lower.tail = F)
+P_AB <- pf(F_AB, dfab, dfe, lower.tail = F)
+```
+
+| Source | df | SS | MS | F-value | P-value |
+|------------|------------|------------|------------|------------|------------|
+| **Location (A fixed)** | [`r dfa`]{.underline} | 1.30 | [`r round(MSA, 2)`]{.underline} | [`r round(F_A, 2)`]{.underline} | `r P_A` |
+| **Player (B random)** | [`r dfb`]{.underline} | 3879.30 | [`r round(MSB, 2)`]{.underline} | [`r round(F_B, 2)`]{.underline} | `r P_B` |
+| **Player \* Location** | [`r dfab`]{.underline} | 323.67 | [`r round(MSAB, 2)`]{.underline} | [`r round(F_AB, 2)`]{.underline} | `r P_AB` |
+| **Error** | [`r dfe`]{.underline} | 15787.29 | [`r round(MSE, 2)`]{.underline} |  |  |
+| **Total** | [`r dfT`]{.underline} | 19991.56 |  |  |  |
+
+### b.
+
+Testing:
+
+$H_o : \sigma_{\alpha\beta}^2 = 0$\
+$H_a : \sigma_{\alpha\beta}^2 \neq 0$\
+
+Given the P-value for the interaction term (0.6823), and assuming an $\alpha = 0.05$, the probability is higher that our threshold. Therefore we fail to reject the null hypothesis and conclude that we don't have enough evidence to suggest that there is an interaction between player and location.
+
+### c. 
+
+Testing:
+
+$H_o : \alpha_1 = \alpha_2 = 0$\
+$H_a : at~least~one~\alpha_i \neq 0$\
+
+Given the P-value for the location term (0.8534), and assuming an $\alpha = 0.05$, the probability is higher that our threshold. Therefore we fail to reject the null hypothesis and conclude that we don't have enough evidence to suggest that location has a main effect on the mean points gotten by a player.
+
+### d.
+
+Testing:
+
+$H_o : \sigma_{\beta}^2 = 0$\
+$H_a : \sigma_{\beta}^2 \neq 0$\
+
+Given the P-value for the player effect (9.424e-12), and assuming an $\alpha = 0.05$, the probability is lower than our threshold. Therefore we reject the null hypothesis and conclude that we have enough evidence to suggest that the player has a main effect on the average points.
+
+### e.
+
+```{r}
+sab <- (MSAB - MSE) / n
+sab
+sb <- (MSB - MSE) / (a * n)
+sb
+s <- MSE
+s
+```
+
+$\widehat{\sigma^2} = 49.335$\
+$\widehat{\sigma_{\alpha\beta}^2} = 0$\
+As statistically proven, the $\widehat{\sigma_{\alpha\beta}^2}$ is not estimated to be different than 0, since a variance cannot be negative, its value is set to 0.\
+$\widehat{\sigma_{\beta}^2} = 11.226$\
+
+## Problem 4
 
