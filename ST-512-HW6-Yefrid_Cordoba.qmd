@@ -1,0 +1,9 @@
+---
+title: "ST-512-HW6-Yefrid_Cordoba"
+format: html
+editor: visual
+author: "Yefrid Cordoba"
+---
+
+## Problem 1
+
